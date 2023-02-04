@@ -18,7 +18,7 @@ export class GqlConfigService implements GqlOptionsFactory {
       //   // },
       // },
       path: '/graphql',
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'libs/shared/utils/src/lib/schema.gql'),
       installSubscriptionHandlers: true,
       resolverValidationOptions: {},
       debug: process.env.NODE_ENV === 'development',

@@ -84,15 +84,12 @@ input GetBlogInput {
 }
 
 type GetBlogOutput {
-  capacity: Float!
-  clients: [UserEntity!]
   createdAt: DateTime
+  createdBy: UserEntity!
   deletedAt: DateTime
   deletedBy: String
-  description: String
   id: String
-  language: String!
-  topic: String!
+  title: String!
   updatedAt: DateTime
 }
 
