@@ -14,7 +14,19 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@noinghe/api/auth": ["libs/api/auth/src/index.ts"],
+      "@noinghe/api/blog": ["libs/api/blog/src/index.ts"],
+      "@noinghe/api/chat": ["libs/api/chat/src/index.ts"],
+      "@noinghe/api/core": ["libs/api/core/src/index.ts"],
+      "@noinghe/api/core/lib/*": ["libs/api/core/src/lib/*"],
+      "@noinghe/api/messages": ["libs/api/messages/src/index.ts"],
+      "@noinghe/api/roles": ["libs/api/roles/src/index.ts"],
+      "@noinghe/api/rooms": ["libs/api/rooms/src/index.ts"],
+      "@noinghe/api/users": ["libs/api/users/src/index.ts"],
+      "@noinghe/shared/data-access/entities": ["libs/shared/data-access/entities/src/index.ts"],
+      "@noinghe/shared/utils/lib/*": ["libs/shared/utils/src/lib/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

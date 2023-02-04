@@ -1,0 +1,496 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BlogEntity {
+  createdAt: DateTime
+  createdBy: UserEntity!
+  deletedAt: DateTime
+  deletedBy: String
+  id: String
+  title: String!
+  updatedAt: DateTime
+}
+
+input CreateBlogInput {
+  title: String!
+}
+
+type CreateBlogOutput {
+  id: String!
+}
+
+input CreateRoleIntput {
+  isDefault: Boolean
+  scp: [String!]!
+  title: String!
+}
+
+type CreateRoleOutput {
+  id: String!
+}
+
+input CreateRoomInput {
+  capacity: Float!
+  description: String
+  language: String!
+  topic: String!
+}
+
+type CreateRoomOutput {
+  id: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteBlogInput {
+  id: String!
+}
+
+type DeleteBlogOutput {
+  id: String!
+}
+
+input DeleteRoleIntput {
+  id: String!
+}
+
+type DeleteRoleOutput {
+  id: String!
+}
+
+input DeleteRoomIntput {
+  id: String!
+}
+
+type DeleteRoomOutput {
+  id: String!
+}
+
+input DeleteUserInput {
+  id: String!
+}
+
+type DeleteUserOuput {
+  id: String!
+}
+
+input GetBlogInput {
+  id: String!
+  relations: [String!] = []
+}
+
+type GetBlogOutput {
+  capacity: Float!
+  clients: [UserEntity!]
+  createdAt: DateTime
+  deletedAt: DateTime
+  deletedBy: String
+  description: String
+  id: String
+  language: String!
+  topic: String!
+  updatedAt: DateTime
+}
+
+input GetBlogsInput {
+  pagination: PaginationInput!
+  relations: [String!] = []
+}
+
+type GetBlogsOutput {
+  data: [BlogEntity!]!
+  pagination: Pagination!
+}
+
+type GetDeletedRolesOutput {
+  id: String!
+  isDefault: Boolean!
+  scp: [String!]!
+  title: String!
+}
+
+input GetRoleByIdInput {
+  id: String!
+  relations: [String!] = []
+}
+
+type GetRoleByIdOutput {
+  id: String!
+  isDefault: Boolean!
+  scp: [String!]!
+  title: String!
+}
+
+type GetRolesOutput {
+  id: String!
+  isDefault: Boolean!
+  scp: [String!]!
+  title: String!
+}
+
+input GetRoomsIntput {
+  pagination: PaginationInput!
+  relations: [String!] = []
+}
+
+type GetRoomsOutput {
+  data: [RoomOutput!]!
+  pagination: Pagination!
+}
+
+input GetUserInput {
+  id: String!
+  relations: [String!] = []
+}
+
+type GetUserOutput {
+  avatar: String
+  createdAt: DateTime
+  deletedAt: DateTime
+  deletedBy: String
+  email: String!
+  emailVerified: Boolean
+  fullName: String
+  id: String
+  phone: String
+  privilege: [Privilege!]
+  roles: [RoleEntity!]
+  updatedAt: DateTime
+}
+
+input GetUsersInput {
+  pagination: PaginationInput!
+  relations: [String!] = []
+}
+
+type GetUsersOutput {
+  data: [UserEntity!]!
+  pagination: Pagination!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type MeOutput {
+  avatar: String!
+  email: String!
+  id: String!
+  name: String!
+  scp: [String!]!
+  sub: String!
+  username: String!
+}
+
+type Mutation {
+  """
+  {"publ":false,"t":"Tạo Blog","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  createBlog(input: CreateBlogInput!): CreateBlogOutput!
+
+  """
+  {"publ":false,"t":"Tạo vai trò người dùng","desc":"","sys":false,"sub":false,"gr":"role","d":false}
+  """
+  createRole(input: CreateRoleIntput!): CreateRoleOutput!
+
+  """
+  {"publ":false,"t":"Tạo room","desc":"","sys":false,"sub":false,"gr":"room","d":false}
+  """
+  createRoom(input: CreateRoomInput!): CreateRoomOutput!
+
+  """
+  {"publ":false,"t":"Xóa Blog","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  deleteBlog(input: DeleteBlogInput!): DeleteBlogOutput!
+
+  """
+  {"publ":false,"t":"Xóa vai trò người dùng","desc":"","sys":false,"sub":false,"gr":"role","d":false}
+  """
+  deleteRole(input: DeleteRoleIntput!): DeleteRoleOutput!
+
+  """
+  {"publ":false,"t":"Xóa room","desc":"","sys":false,"sub":false,"gr":"room","d":false}
+  """
+  deleteRoom(input: DeleteRoomIntput!): DeleteRoomOutput!
+
+  """
+  {"publ":false,"t":"Xóa user","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  deleteUser(input: DeleteUserInput!): DeleteUserOuput!
+
+  """
+  {"publ":false,"t":"Phục hồi quyền","desc":"","sys":true,"sub":false,"gr":"role","d":false}
+  """
+  recoverRole(input: RecoverRoleIntput!): RecoverRoleOutput!
+
+  """
+  {"publ":false,"t":"khôi phục user","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  recoverUser(input: RecoverUserInput!): RecoverUserOutput!
+
+  """
+  {"publ":true,"t":"Đăng nhập","desc":"","sys":false,"sub":false,"gr":"auth","d":false}
+  """
+  signin(input: SigninIntput!): SigninOutput!
+
+  """
+  {"publ":true,"t":"Đăng nhập by gg","desc":"","sys":false,"sub":false,"gr":"auth","d":false}
+  """
+  signinByGoogle(input: SigninByGoogleIntput!): SigninOutput!
+
+  """
+  {"publ":true,"t":"Đăng kí","desc":"","sys":false,"sub":false,"gr":"auth","d":false}
+  """
+  signup(input: Signup!): SignupOutput!
+
+  """
+  {"publ":false,"t":"Sửa Blog","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  updateBlog(input: UpdateBlogInput!): UpdateBlogOutput!
+
+  """
+  {"publ":false,"t":"Cập nhập vai trò người dùng","desc":"","sys":false,"sub":false,"gr":"role","d":false}
+  """
+  updateRole(input: UpdateRoleIntput!): UpdateRoleOuput!
+
+  """
+  {"publ":false,"t":"Cập nhập thông tin cá nhân","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  updateUser(input: UpdateUserInput!): UpdateUserOutput!
+
+  """
+  {"publ":false,"t":"Cập nhập thông tin user by admin","desc":"","sys":true,"sub":false,"gr":"user","d":false}
+  """
+  updateUserByAdmin(input: UpdateUserByAdminInput!): UpdateUserByAdminOutput!
+}
+
+type OnRoomSyncedOutPut {
+  action: Float!
+  room: RoomOutput!
+}
+
+type Pagination {
+  limit: Float!
+  page: Float!
+  totalCount: Float!
+}
+
+input PaginationInput {
+  limit: Float! = 100
+  page: Float! = 1
+  totalCount: Float = null
+}
+
+enum Privilege {
+  SuperAdmin
+}
+
+type Query {
+  """
+  {"publ":false,"t":"Lấy thông tin blog","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  getBlog(input: GetBlogInput!): GetBlogOutput!
+
+  """
+  {"publ":false,"t":"Lấy danh sách blog","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  getBlogs(input: GetBlogsInput!): GetBlogsOutput!
+
+  """
+  {"publ":false,"t":"Find deleted Blog by Pagination","desc":"","sys":false,"sub":false,"gr":"blog","d":false}
+  """
+  getDeletedBlogs(input: GetBlogsInput!): GetBlogsOutput!
+
+  """
+  {"publ":false,"t":"Danh sách vai trò đã xóa","desc":"","sys":true,"sub":false,"gr":"role","d":false}
+  """
+  getDeletedRoles: [GetDeletedRolesOutput!]!
+
+  """
+  {"publ":false,"t":"Lấy danh sách user đã xóa","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  getDeletedUsers(input: GetUsersInput!): GetUsersOutput!
+
+  """
+  {"publ":false,"t":"Lấy vai trò bằng ID","desc":"","sys":false,"sub":false,"gr":"role","d":false}
+  """
+  getRoleById(input: GetRoleByIdInput!): GetRoleByIdOutput!
+
+  """
+  {"publ":false,"t":"Lấy danh sách vai trò","desc":"","sys":false,"sub":false,"gr":"role","d":false}
+  """
+  getRoles: [GetRolesOutput!]!
+
+  """
+  {"publ":true,"t":"Lấy danh sách room","desc":"","sys":false,"sub":false,"gr":"room","d":false}
+  """
+  getRooms(input: GetRoomsIntput!): GetRoomsOutput!
+
+  """
+  {"publ":true,"t":"Lấy thông tin user","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  getUser(input: GetUserInput!): GetUserOutput!
+
+  """
+  {"publ":false,"t":"Lấy danh sách user","desc":"","sys":false,"sub":false,"gr":"user","d":false}
+  """
+  getUsers(input: GetUsersInput!): GetUsersOutput!
+
+  """
+  {"publ":true,"t":"Get me","desc":"","sys":false,"sub":false,"gr":"user","d":true}
+  """
+  me: MeOutput!
+}
+
+input RecoverRoleIntput {
+  id: String!
+}
+
+type RecoverRoleOutput {
+  id: String!
+}
+
+input RecoverUserInput {
+  id: String!
+}
+
+type RecoverUserOutput {
+  id: String!
+}
+
+input RelationshipInput {
+  id: String!
+}
+
+type RoleEntity {
+  createdAt: DateTime
+  deletedAt: DateTime
+  deletedBy: String
+  id: String
+  isDefault: Boolean
+  scp: [String!]
+  title: String!
+  updatedAt: DateTime
+}
+
+type RoomOutput {
+  capacity: Float!
+  clients: [RoomUserOutPut!]!
+  createdAt: Float!
+  creator: RoomUserOutPut!
+  description: String
+  id: String!
+  language: String!
+  topic: String
+  updatedAt: Float
+}
+
+type RoomUserOutPut {
+  avatar: String!
+  id: String!
+  name: String!
+}
+
+input SigninByGoogleIntput {
+  token: String!
+}
+
+input SigninIntput {
+  email: String!
+  password: String!
+}
+
+type SigninOutput {
+  email: String!
+  id: String!
+  memberships: JSON!
+  refreshToken: String
+  scp: [String!]!
+  token: String!
+}
+
+input Signup {
+  """Email to login"""
+  email: String!
+
+  """Password"""
+  password: String!
+}
+
+type SignupOutput {
+  email: String!
+  id: String!
+  refreshToken: String
+  scp: [String!]!
+  token: String!
+}
+
+type Subscription {
+  """
+  {"publ":true,"t":"Watch synced room","desc":"","sys":false,"sub":true,"gr":"room","d":false}
+  """
+  onRoomSynced: OnRoomSyncedOutPut!
+}
+
+input UpdateBlogInput {
+  id: String!
+  title: String!
+}
+
+type UpdateBlogOutput {
+  id: String!
+  title: String!
+}
+
+input UpdateRoleIntput {
+  id: String!
+  isDefault: Boolean
+  scp: [String!]
+  title: String
+}
+
+type UpdateRoleOuput {
+  id: String!
+}
+
+input UpdateUserByAdminInput {
+  id: String!
+  roles: [RelationshipInput!]
+}
+
+type UpdateUserByAdminOutput {
+  id: String!
+}
+
+input UpdateUserInput {
+  fullName: String
+  id: String!
+  mobile: String
+  password: String
+  profile: String
+  username: String
+}
+
+type UpdateUserOutput {
+  id: String!
+}
+
+type UserEntity {
+  avatar: String
+  createdAt: DateTime
+  deletedAt: DateTime
+  deletedBy: String
+  email: String!
+  emailVerified: Boolean
+  fullName: String
+  id: String
+  phone: String
+  privilege: [Privilege!]
+  roles: [RoleEntity!]
+  updatedAt: DateTime
+}
